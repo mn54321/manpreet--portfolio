@@ -315,7 +315,7 @@ class drawerState extends State<drawer> {
             SizedBox(height: 10),
             Container(
               width: _mediaQuery.size.width,
-              height: _mediaQuery.size.height * 0.6,
+              height: _mediaQuery.size.height * 0.7,
               color: Colors.brown,
               child: Column(
                 children: [

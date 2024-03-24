@@ -1,20 +1,13 @@
-2024/03/20-20:48:13.655 1e20 Reusing MANIFEST C:\Users\MANPRE~1\AppData\Local\Temp\flutter_tools.1dd73c34\flutter_tools_chrome_device.8123d237\Default\shared_proto_db/MANIFEST-000001
-2024/03/20-20:48:13.656 1e20 Recovering log #16
-2024/03/20-20:48:13.658 1e20 Reusing old log C:\Users\MANPRE~1\AppData\Local\Temp\flutter_tools.1dd73c34\flutter_tools_chrome_device.8123d237\Default\shared_proto_db/000016.log 
-2024/03/20-20:48:13.658 1e20 Delete type=0 #3
-2024/03/20-20:48:13.658 1e20 Delete type=0 #4
-2024/03/20-20:48:13.659 1e20 Delete type=0 #7
-2024/03/20-20:48:13.659 1e20 Delete type=0 #10
-2024/03/20-20:48:13.659 1e20 Delete type=0 #13
-2024/03/20-20:51:21.335 2774 Level-0 table #20: started
-2024/03/20-20:51:21.396 2774 Level-0 table #20: 142683 bytes OK
-2024/03/20-20:51:21.445 2774 Delete type=0 #16
-2024/03/20-20:51:21.446 2774 Compacting 4@0 + 1@1 files
-2024/03/20-20:51:21.494 2774 Generated table #21@0: 1175 keys, 52358 bytes
-2024/03/20-20:51:21.495 2774 Compacted 4@0 + 1@1 files => 52358 bytes
-2024/03/20-20:51:21.543 2774 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/03/20-20:51:21.544 2774 Delete type=2 #8
-2024/03/20-20:51:21.544 2774 Delete type=2 #11
-2024/03/20-20:51:21.544 2774 Delete type=2 #14
-2024/03/20-20:51:21.544 2774 Delete type=2 #17
-2024/03/20-20:51:21.544 2774 Delete type=2 #20
+2024/03/24-11:09:08.148 4cc Reusing MANIFEST C:\Users\MANPRE~1\AppData\Local\Temp\flutter_tools.e1e564f2\flutter_tools_chrome_device.545cfc7d\Default\shared_proto_db/MANIFEST-000001
+2024/03/24-11:09:08.148 4cc Recovering log #19
+2024/03/24-11:09:08.150 4cc Reusing old log C:\Users\MANPRE~1\AppData\Local\Temp\flutter_tools.e1e564f2\flutter_tools_chrome_device.545cfc7d\Default\shared_proto_db/000019.log 
+2024/03/24-11:09:08.151 4cc Delete type=0 #3
+2024/03/24-11:09:08.151 4cc Delete type=0 #4
+2024/03/24-11:09:08.151 4cc Delete type=0 #7
+2024/03/24-11:09:08.152 4cc Delete type=2 #8
+2024/03/24-11:09:08.152 4cc Delete type=0 #10
+2024/03/24-11:09:08.152 4cc Delete type=2 #11
+2024/03/24-11:09:08.153 4cc Delete type=0 #13
+2024/03/24-11:09:08.153 4cc Delete type=2 #14
+2024/03/24-11:09:08.154 4cc Delete type=0 #16
+2024/03/24-11:09:08.154 4cc Delete type=2 #17
