@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:manpreet_portfolio/carsousel_model.dart';
 import 'package:manpreet_portfolio/work.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:manpreet_portfolio/home.dart';
@@ -335,106 +336,7 @@ class drawerState extends State<drawer> {
                           height: 320.0,
                           autoPlay: true,
                           autoPlayCurve: Curves.decelerate),
-                      items: [
-                        'image/app.png',
-                        'image/develop.png',
-                        'image/blog.png',
-                        'image/prototyping.png',
-                      ].map((imagepath) {
-                        return Builder(builder: (BuildContext context) {
-                          return FlipCard(
-                            onTapFlipping: true,
-                            rotateSide: RotateSide.right,
-                            controller: _controller,
-                            frontWidget: Center(
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(imagepath, scale: 7.0),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      if (imagepath == 'image/app.png')
-                                        Text(
-                                          "UI/UX Designing",
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      if (imagepath == 'image/develop.png')
-                                        Text(
-                                          "Mobile App Development",
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      if (imagepath == 'image/blog.png')
-                                        Text(
-                                          "Blog Writing",
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      if (imagepath == 'image/prototyping.png')
-                                        Text(
-                                          "Rapid Prototyping",
-                                          style: TextStyle(fontSize: 17),
-                                        )
-                                    ],
-                                  ),
-                                  margin: EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.white,
-                                            blurRadius: 5,
-                                            spreadRadius: 2)
-                                      ],
-                                      color: Colors.pink,
-                                      borderRadius: BorderRadius.circular(30))),
-                            ),
-                            backWidget: Container(
-                                margin: EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.pink,
-                                          blurRadius: 5,
-                                          spreadRadius: 2)
-                                    ],
-                                    color: Colors.yellow,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      if (imagepath == 'image/app.png')
-                                        Text(
-                                            "Android app development via Flutter"),
-                                      Text(
-                                        "- Splash Screen",
-                                      ),
-                                      Text("- Firbase Auth/ Cloud"),
-                                      Text("- REST APIs"),
-                                      Text("- Maps integration and more....!"),
-                                      Divider(height: 30),
-                                      Center(
-                                        child: Container(
-                                          height: 30,
-                                          width: 100,
-                                          child: FloatingActionButton(
-                                            shape: BeveledRectangleBorder(),
-                                            child: Text("Hire me"),
-                                            onPressed: null,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )),
-                          );
-                        });
-                      }).toList()),
+                      items: _createCarouselWidgets()),
                 ],
               ),
             )
@@ -454,4 +356,90 @@ class drawerState extends State<drawer> {
     Text('Blog Writing'),
     Text('Rapid Prototyping'),
   ];
+
+  List<Widget> _createCarouselWidgets() {
+    List<Widget> _widgets = [];
+
+    final List<CarouselModel> listOfImages = [
+      CarouselModel(
+          imagePath: 'image/app.png',
+          frontTitle: "UI/UX Designing",
+          backTitle: "- Splash Screen"),
+      CarouselModel(
+          imagePath: 'image/develop.png',
+          frontTitle: "Mobile App Development",
+          backTitle: "Android app development via Flutter"),
+      CarouselModel(
+          imagePath: 'image/blog.png',
+          frontTitle: "Blog Writing",
+          backTitle: "- Firbase Auth/ Cloud"),
+      CarouselModel(
+          imagePath: 'image/prototyping.png',
+          frontTitle: "Rapid Prototyping",
+          backTitle: "- Maps integration and more....!"),
+    ];
+
+    for (int i = 0; i < listOfImages.length; i++) {
+      _widgets.add(Builder(builder: (BuildContext context) {
+        final carouselModel = listOfImages[i];
+        return FlipCard(
+          onTapFlipping: true,
+          rotateSide: RotateSide.right,
+          controller: _controller,
+          frontWidget: Center(
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.all(20),
+                decoration: BoxDecoration(boxShadow: const [
+                  BoxShadow(color: Colors.white, blurRadius: 5, spreadRadius: 2)
+                ], color: Colors.pink, borderRadius: BorderRadius.circular(30)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(carouselModel.imagePath, scale: 7.0),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      carouselModel.frontTitle,
+                      style: const TextStyle(fontSize: 17),
+                    )
+                  ],
+                )),
+          ),
+          backWidget: Container(
+              margin: const EdgeInsets.all(20),
+              decoration: BoxDecoration(boxShadow: const [
+                BoxShadow(color: Colors.pink, blurRadius: 5, spreadRadius: 2)
+              ], color: Colors.yellow, borderRadius: BorderRadius.circular(30)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      carouselModel.backTitle,
+                    ),
+                    const Divider(height: 30),
+                    Center(
+                      child: Container(
+                        height: 30,
+                        width: 100,
+                        child: const FloatingActionButton(
+                          shape: BeveledRectangleBorder(),
+                          onPressed: null,
+                          child: Text("Hire me"),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )),
+        );
+      }));
+    }
+
+    return _widgets;
+  }
 }
