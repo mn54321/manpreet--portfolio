@@ -7,6 +7,9 @@ import 'package:manpreet_portfolio/home.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
+import 'package:custom_alert_dialog_box/custom_alert_dialog_box.dart';
+import 'package:easy_url_launcher/easy_url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class drawer extends StatefulWidget {
   @override
@@ -16,12 +19,29 @@ class drawer extends StatefulWidget {
 }
 
 class drawerState extends State<drawer> {
+  void whatsapplaunch({@required number}) async {
+    String url = "whatsapp://send?phone=$number";
+    await launchUrl(Uri.parse(url)).onError(
+      (error, stackTrace) {
+        print("Url is not valid");
+        return false;
+      },
+    );
+  }
+
+  var key1 = GlobalKey();
+  var key2 = GlobalKey();
+  var key3 = GlobalKey();
+  var key4 = GlobalKey();
+  var key5 = GlobalKey();
+
   FlipCardController _controller = FlipCardController();
   @override
   Widget build(BuildContext context) {
     var _mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
         title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           Image.asset(
             'image/fullsky.png',
@@ -38,7 +58,7 @@ class drawerState extends State<drawer> {
             children: <Widget>[
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 30),
                 color: const Color.fromARGB(255, 251, 250, 250),
                 child: Column(children: <Widget>[
                   Container(
@@ -80,9 +100,9 @@ class drawerState extends State<drawer> {
                   color: Color.fromARGB(255, 255, 254, 254),
                 ),
                 onTap: () {
-                  Navigator.of(context).pop();
-                  /*Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => drawer()));*/
+                  Scrollable.ensureVisible(key1.currentContext!,
+                      duration: Duration(milliseconds: 1000));
+                  Navigator.pop(context);
                 },
               ),
               const Divider(
@@ -107,7 +127,11 @@ class drawerState extends State<drawer> {
                   size: 20,
                   color: Color.fromARGB(255, 255, 254, 254),
                 ),
-                onTap: null,
+                onTap: () {
+                  Scrollable.ensureVisible(key2.currentContext!,
+                      duration: Duration(milliseconds: 1000));
+                  Navigator.pop(context);
+                },
               ),
               const Divider(
                 color: Color.fromARGB(255, 74, 73, 73),
@@ -130,7 +154,11 @@ class drawerState extends State<drawer> {
                   size: 20,
                   color: Color.fromARGB(255, 254, 253, 253),
                 ),
-                onTap: null,
+                onTap: () {
+                  Scrollable.ensureVisible(key3.currentContext!,
+                      duration: Duration(milliseconds: 1000));
+                  Navigator.pop(context);
+                },
               ),
               const Divider(
                 color: Color.fromARGB(255, 74, 73, 73),
@@ -159,11 +187,10 @@ class drawerState extends State<drawer> {
                   color: Color.fromARGB(255, 255, 254, 254),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => work(),
-                      ));
+                  Scrollable.ensureVisible(key5.currentContext!,
+                      duration: Duration(milliseconds: 1000));
+
+                  Navigator.pop(context);
                 },
               ),
               const Divider(
@@ -187,7 +214,11 @@ class drawerState extends State<drawer> {
                   size: 20,
                   color: Color.fromARGB(255, 254, 253, 253),
                 ),
-                onTap: null,
+                onTap: () {
+                  Scrollable.ensureVisible(key4.currentContext!,
+                      duration: Duration(milliseconds: 1000));
+                  Navigator.pop(context);
+                },
               ),
             ],
           )),
@@ -195,18 +226,91 @@ class drawerState extends State<drawer> {
         child: Column(
           children: [
             Container(
+              key: key1,
               height: _mediaQuery.size.height * 0.9,
               //width: double.infinity,
-              color: const Color.fromARGB(255, 5, 77, 136),
+              color: Colors.white,
               child: Stack(
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+                      //
+                      // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hi Welcome To My Portfolio",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'simp',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                              height: 35,
+                              child: Image(image: AssetImage('image/hi.gif')),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Manpreet\nSingh",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 36,
+                              fontFamily: 'ro'),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            AnimatedTextKit(
+                              animatedTexts: [
+                                WavyAnimatedText(
+                                  "Flutter Developer",
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                ),
+                                WavyAnimatedText(
+                                  "UI/UX Graphic Designer",
+                                  textStyle: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                )
+                              ],
+                              repeatForever: true,
+                              isRepeatingAnimation: true,
+                            ),
+                            Icon(
+                              Icons.play_arrow,
+                              color: Colors.green,
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
                       CircleAvatar(
-                        backgroundColor:
-                            const Color.fromARGB(255, 254, 255, 255),
+                        backgroundColor: Colors.blue,
                         radius: 105,
                         child: ClipOval(
                           child: Image.asset(
@@ -218,75 +322,17 @@ class drawerState extends State<drawer> {
                           ),
                         ),
                       ),
-
-                      SizedBox(
-                        height: 15,
-                      ),
-                      // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Hi Welcome To My Portfolio",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 250, 249, 249),
-                                fontFamily: 'FontMain',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Container(
-                            height: 20,
-                            child: Image(image: AssetImage('image/hi.gif')),
-                          ),
-                        ],
-                      ),
-
-                      Text(
-                        "Manpreet Singh",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 250, 249, 249),
-                            fontSize: 36,
-                            fontFamily: 'cool'),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AnimatedTextKit(
-                            animatedTexts: [
-                              WavyAnimatedText(
-                                "Flutter Developer",
-                                textStyle: TextStyle(
-                                    color: Color.fromARGB(255, 254, 251, 251)),
-                              ),
-                              WavyAnimatedText(
-                                "UI/UX Graphic Designer",
-                                textStyle: TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255)),
-                              )
-                            ],
-                            repeatForever: true,
-                            isRepeatingAnimation: true,
-                          ),
-                          Icon(
-                            Icons.play_arrow,
-                            color: Colors.green,
-                          )
-                        ],
-                      ),
                     ],
                   ),
                 ],
               ),
             ),
             Container(
+                key: key2,
                 padding: EdgeInsets.symmetric(vertical: 30),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                color: Colors.black,
+                color: Colors.white,
                 child: Column(
                   children: [
                     Container(
@@ -298,35 +344,152 @@ class drawerState extends State<drawer> {
                           child: Text(
                             "About Me",
                             style: TextStyle(
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                fontSize: 45,
+                                color: Colors.blue,
+                                fontFamily: 'robo'),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        subtitle: AutoSizeText(
-                          "One of my key strengths lies in his ability to understand and implement complex design patterns and architectures. He possesses a deep understanding of Flutter's widget-based system, enabling him to create visually appealing and functional user interfaces. My attention to detail ensures that his applications not only meet technical requirements but also provide an excellent user experience.In addition to his technical prowess, i am well-versed in the Dart programming language, which is integral to Flutter development. His proficiency in Dart, coupled with a knack for problem-solving, allows him to tackle challenges efficiently and deliver high-quality code. My commitment to staying updated with the latest trends and advancements in Flutter and mobile development showcases his dedication to professional growth. He actively participates in the Flutter community, contributing insights and solutions to common development issues, further establishing himself as a reliable source of knowledge.",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                          textAlign: TextAlign.justify,
+                        subtitle: Column(
+                          children: [
+                            Text(
+                              'I am Manpreet Singh, a Flutter developer,Graphic Designer',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  fontFamily: 'simp'),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            AutoSizeText(
+                              "One of my key strengths lies in his ability to understand and implement complex design patterns and architectures. He possesses a deep understanding of Flutter's widget-based system, enabling him to create visually appealing and functional user interfaces. My attention to detail ensures that his applications not only meet technical requirements but also provide an excellent user experience.In addition to his technical prowess, i am well-versed in the Dart programming language, which is integral to Flutter development. His proficiency in Dart, coupled with a knack for problem-solving, allows him to tackle challenges efficiently and deliver high-quality code. My commitment to staying updated with the latest trends and advancements in Flutter and mobile development showcases his dedication to professional growth. He actively participates in the Flutter community, contributing insights and solutions to common development issues, further establishing himself as a reliable source of knowledge.",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.black,
+                                  fontFamily: 'simp'),
+                              textAlign: TextAlign.justify,
+                            ),
+                            Divider(
+                              height: 40,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              'Tecnologies I have worked with:',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontFamily: 'simp',
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Flutter',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.blue,
+                                ),
+                                Text(
+                                  'Dart',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.blue,
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              height: 40,
+                              color: Colors.black,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Name:',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text(
+                                  '   Manpreet Singh',
+                                  style: TextStyle(
+                                      fontFamily: 'robo', fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Email:',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text(
+                                  '   manpreet420007@gmail.com',
+                                  style: TextStyle(
+                                      fontFamily: 'robo', fontSize: 12),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Container(
+                              height: 45,
+                              width: 110,
+                              child: OutlinedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                  Colors.white,
+                                )),
+                                onPressed: null,
+                                child: Text(
+                                  'Resume',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ],
                 )),
-            SizedBox(height: 10),
             Container(
+              key: key3,
               width: _mediaQuery.size.width,
-              height: _mediaQuery.size.height * 0.7,
-              color: Colors.brown,
+              height: _mediaQuery.size.height * 0.6,
+              color: Colors.white,
               child: Column(
                 children: [
                   Text(
                     'What I can do',
-                    style: TextStyle(fontSize: 50),
+                    style: TextStyle(
+                        fontSize: 45, color: Colors.blue, fontFamily: 'robo'),
                   ),
                   Text(
                     'I am not be perfect but surly i am of some use:)',
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 12, fontFamily: 'simp'),
                   ),
                   SizedBox(height: 20),
                   CarouselSlider(
@@ -339,44 +502,225 @@ class drawerState extends State<drawer> {
                       items: _createCarouselWidgets()),
                 ],
               ),
-            )
+            ),
+            Container(
+              key: key5,
+              width: _mediaQuery.size.width,
+              height: _mediaQuery.size.height * 0.6,
+              color: Colors.white,
+              child: Column(children: [
+                Text(
+                  "Portfolio",
+                  style: TextStyle(
+                      fontSize: 45, color: Colors.blue, fontFamily: 'robo'),
+                ),
+                Text(
+                  "Here are few samples of my work :)",
+                  style: TextStyle(fontFamily: 'simp'),
+                ),
+                SizedBox(height: 30),
+                CarouselSlider(
+                    items: _portfolio.map((e) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                          width: _mediaQuery.size.width,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.blue,
+                                    blurRadius: 5,
+                                    spreadRadius: 2)
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Image.asset(
+                            e,
+                            scale: 8.0,
+                          ),
+                        );
+                      });
+                    }).toList(),
+                    options: CarouselOptions(
+                        height: 290,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        autoPlayCurve: Curves.linear))
+              ]),
+            ),
+            Container(
+              key: key4,
+              color: Colors.white,
+              width: _mediaQuery.size.width,
+              height: _mediaQuery.size.height * 0.7,
+              child: Column(children: [
+                Text(
+                  'Get in Touch',
+                  style: TextStyle(
+                      fontSize: 45, color: Colors.blue, fontFamily: 'robo'),
+                ),
+                Text(
+                  'Lets build together:)',
+                  style: TextStyle(fontFamily: 'simp'),
+                ),
+                SizedBox(height: 30),
+                CarouselSlider(
+                    items: _source.map((i) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                            width: _mediaQuery.size.width,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.blue,
+                                    spreadRadius: 2,
+                                    blurRadius: 5)
+                              ],
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    i,
+                                    scale: 7.0,
+                                  ),
+                                  SizedBox(height: 8),
+                                  if (i == 'image/home.png')
+                                    ListTile(
+                                      title: Text(
+                                        "Location",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        "Luton United Kingdom",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'simp',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  if (i == 'image/telephone.png')
+                                    ListTile(
+                                      title: Text(
+                                        "Phone",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      subtitle: Text(
+                                        "(+44) 7767945663",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'simp',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  if (i == 'image/mail.png')
+                                    ListTile(
+                                      title: Text(
+                                        "Email",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      subtitle: Text(
+                                        "manpreet420007@gmail.com",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'simp',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                ]));
+                      });
+                    }).toList(),
+                    options: CarouselOptions(
+                        height: 290.0,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayCurve: Curves.linear)),
+                SizedBox(height: 100),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Flutter Developed with love",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'simp',
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      height: 25,
+                      child: Image.asset(
+                        'image/like.gif',
+                        scale: 9.0,
+                      ),
+                    )
+                  ],
+                ),
+              ]),
+            ),
           ],
         ),
         /*  Divider(
-              color: Color.fromARGB(255, 74, 73, 73),
-              height: 0,
-            ),*/
+                color: Color.fromARGB(255, 74, 73, 73),
+                height: 0,
+              ),*/
       ),
     );
   }
 
-  final _source = [
-    Text('UI/UX Designer'),
-    Text('Mobile Development'),
-    Text('Blog Writing'),
-    Text('Rapid Prototyping'),
+  List _portfolio = [
+    'image/android.png',
+    'image/android.png',
+    'image/android.png'
   ];
+
+  final _source = ['image/home.png', 'image/telephone.png', 'image/mail.png'];
 
   List<Widget> _createCarouselWidgets() {
     List<Widget> _widgets = [];
 
     final List<CarouselModel> listOfImages = [
       CarouselModel(
-          imagePath: 'image/app.png',
-          frontTitle: "UI/UX Designing",
-          backTitle: "- Splash Screen"),
+        imagePath: 'image/app.png',
+        frontTitle: "UI/UX Designing",
+        backTitle:
+            "Modern UI/UX Designing\n - Adobe XD\n - Mobile App Design\n - Interactive UI designs\n - Responsiveness",
+      ),
       CarouselModel(
           imagePath: 'image/develop.png',
           frontTitle: "Mobile App Development",
-          backTitle: "Android app development via Flutter"),
+          backTitle:
+              "Android app development via Flutter\n - Splash Screen\n - Firebase Auth/Cloud"),
       CarouselModel(
           imagePath: 'image/blog.png',
           frontTitle: "Blog Writing",
-          backTitle: "- Firbase Auth/ Cloud"),
+          backTitle:
+              "Technical Blog Writing\n - Medium blogs\n - soothing heading images\n - Researched topics and more...!"),
       CarouselModel(
           imagePath: 'image/prototyping.png',
           frontTitle: "Rapid Prototyping",
-          backTitle: "- Maps integration and more....!"),
+          backTitle:
+              "Rapid Prototype via Flutter\n - working MVP\n - Quick & Working Prototype"),
     ];
 
     for (int i = 0; i < listOfImages.length; i++) {
@@ -390,9 +734,13 @@ class drawerState extends State<drawer> {
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.all(20),
-                decoration: BoxDecoration(boxShadow: const [
-                  BoxShadow(color: Colors.white, blurRadius: 5, spreadRadius: 2)
-                ], color: Colors.pink, borderRadius: BorderRadius.circular(30)),
+                decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.blue, blurRadius: 5, spreadRadius: 2)
+                    ],
+                    color: const Color.fromARGB(255, 252, 251, 251),
+                    borderRadius: BorderRadius.circular(30)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -410,8 +758,8 @@ class drawerState extends State<drawer> {
           backWidget: Container(
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(boxShadow: const [
-                BoxShadow(color: Colors.pink, blurRadius: 5, spreadRadius: 2)
-              ], color: Colors.yellow, borderRadius: BorderRadius.circular(30)),
+                BoxShadow(color: Colors.blue, blurRadius: 5, spreadRadius: 2)
+              ], color: Colors.white, borderRadius: BorderRadius.circular(30)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -426,10 +774,14 @@ class drawerState extends State<drawer> {
                       child: Container(
                         height: 30,
                         width: 100,
-                        child: const FloatingActionButton(
+                        child: FloatingActionButton(
+                          backgroundColor: Colors.blue,
                           shape: BeveledRectangleBorder(),
-                          onPressed: null,
-                          child: Text("Hire me"),
+                          onPressed: _showdialog,
+                          child: Text(
+                            "Hire me !",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     )
@@ -441,5 +793,61 @@ class drawerState extends State<drawer> {
     }
 
     return _widgets;
+  }
+
+  void _showdialog() {
+    showAdaptiveDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Hire Me!"),
+            actions: [
+              Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            whatsapplaunch(number: "+918427928057");
+                          },
+                          child: Text(
+                            "Whatsapp",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Color.fromARGB(255, 7, 188, 79)))),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                          onPressed: () async {
+                            await EasyLauncher.email(
+                                email: "manpreetbains3344@gmail.com");
+                          },
+                          child: Text(
+                            "Email",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 254, 254, 254)),
+                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 250, 22, 6)))),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Back',
+                                style: TextStyle(color: Colors.blue),
+                              )),
+                        ],
+                      )
+                    ],
+                  ))
+            ],
+          );
+        });
   }
 }

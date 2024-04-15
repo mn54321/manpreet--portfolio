@@ -48,13 +48,19 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   simple_circular_progress_bar: ^1.0.2
-  fan_side_drawer: ^1.0.2
+  
   jumping_dot: ^0.0.6
   animated_text_kit: ^4.2.2
   auto_size_text: ^3.0.0
   carousel_slider: ^4.2.1
   flutter_flip_card: ^0.0.5
-
+  custom_alert_dialog_box: ^1.0.2
+  easy_url_launcher: ^0.0.6
+  url_launcher: ^6.2.5
+  flutter_launcher_icons: ^0.13.1
+  connectivity_plus: ^6.0.2
+  get: ^4.6.6
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -78,7 +84,12 @@ flutter:
      - image/blog.png
      - image/graphic-design.png
      - image/prototyping.png
-   
+     - image/home.png
+     - image/mail.png
+     - image/telephone.png
+     - image/android.png
+     - image/like.gif
+     - image/wifi.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -99,7 +110,17 @@ flutter:
   
     - family: cool
       fonts:
-        - asset: font/coolvetica rg.otf      
+        - asset: font/coolvetica rg.otf   
+    - family: simp
+      fonts:
+        - asset: font/simpletix.otf    
+
+    - family: robo
+      fonts:
+        - asset: font/Roboto-Regular.ttf  
+          
+   
+          
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
