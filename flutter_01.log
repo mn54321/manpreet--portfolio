@@ -1,0 +1,80 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter debug_adapter
+
+## exception
+
+SocketException: SocketException: A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied.
+ (OS Error: A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied.
+, errno = 10057), address = 127.0.0.1, port = 57844
+
+```
+#0      _NativeSocket.startConnect (dart:io-patch/socket_patch.dart:721:35)
+#1      _RawSocket.startConnect (dart:io-patch/socket_patch.dart:1914:26)
+#2      RawSocket.startConnect (dart:io-patch/socket_patch.dart:27:23)
+#3      Socket._startConnect (dart:io-patch/socket_patch.dart:2138:22)
+#4      Socket.startConnect (dart:io/socket.dart:774:21)
+#5      _ConnectionTarget.connect (dart:_http/http_impl.dart:2487:20)
+#6      _HttpClient._getConnection.connect (dart:_http/http_impl.dart:2926:12)
+#7      _HttpClient._getConnection (dart:_http/http_impl.dart:2931:12)
+#8      _HttpClient._openUrl (dart:_http/http_impl.dart:2786:12)
+#9      _HttpClient.openUrl (dart:_http/http_impl.dart:2623:7)
+#10     _WebSocketImpl.connect (dart:_http/websocket_impl.dart:1021:42)
+#11     WebSocket.connect (dart:_http/websocket.dart:320:22)
+#12     DartDebugAdapter._vmServiceConnectUri (package:dds/src/dap/adapters/dart.dart:2535:36)
+#13     DartDebugAdapter.connectDebugger (package:dds/src/dap/adapters/dart.dart:659:29)
+#14     FlutterDebugAdapter._connectDebugger (package:flutter_tools/src/debug_adapters/flutter_adapter.dart:381:15)
+#15     FlutterDebugAdapter._handleDebugPort (package:flutter_tools/src/debug_adapters/flutter_adapter.dart:462:13)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 3.16.5, on Microsoft Windows [Version 10.0.22631.3447], locale en-GB)
+    • Flutter version 3.16.5 on channel stable at C:\flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision 78666c8dc5 (4 months ago), 2023-12-19 16:14:14 -0800
+    • Engine revision 3f3e560236
+    • Dart version 3.2.3
+    • DevTools version 2.28.4
+
+[✓] Windows Version (Installed version of Windows is version 10 or higher)
+
+[!] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+    • Android SDK at C:\Users\Manpreet Singh\AppData\Local\Android\sdk
+    ✗ cmdline-tools component is missing
+      Run `path/to/sdkmanager --install "cmdline-tools;latest"`
+      See https://developer.android.com/studio/command-line for more details.
+    ✗ Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/docs/get-started/install/windows#android-setup for more details.
+
+[✓] Chrome - develop for the web
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[✓] Android Studio (version 2023.1)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 17.0.7+0-b2043.56-10550314)
+
+[✓] VS Code (version 1.88.1)
+    • VS Code at C:\Users\Manpreet Singh\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.86.0
+
+[✓] Connected device (3 available)
+    • Redmi Note 8 Pro (mobile) • 957h6l4x6ljbeqiz • android-arm64  • Android 11 (API 30)
+    • Chrome (web)              • chrome           • web-javascript • Google Chrome 124.0.6367.60
+    • Edge (web)                • edge             • web-javascript • Microsoft Edge 123.0.2420.97
+
+[✓] Network resources
+    • All expected network resources are available.
+
+! Doctor found issues in 1 category.
+```

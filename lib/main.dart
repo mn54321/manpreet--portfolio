@@ -3,13 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:manpreet_portfolio/drawer.dart';
 import 'package:jumping_dot/jumping_dot.dart';
-import 'package:manpreet_portfolio/internet_status_checker.dart';
+
 import 'package:manpreet_portfolio/progress.dart';
-import 'package:get/get.dart';
 
 void main() {
-  Get.put(InternetStatusChecker(), permanent: true);
-  runApp(GetMaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Mangeet Creation",
     home: portfolionew(),

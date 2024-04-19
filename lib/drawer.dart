@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:manpreet_portfolio/carsousel_model.dart';
 import 'package:manpreet_portfolio/work.dart';
@@ -10,6 +14,9 @@ import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'package:custom_alert_dialog_box/custom_alert_dialog_box.dart';
 import 'package:easy_url_launcher/easy_url_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shadow_overlay/shadow_overlay.dart';
 
 class drawer extends StatefulWidget {
   @override
@@ -19,6 +26,33 @@ class drawer extends StatefulWidget {
 }
 
 class drawerState extends State<drawer> {
+  late StreamSubscription subscription;
+  bool isDeviceConnected = false;
+  bool isalertset = false;
+
+  @override
+  void initState() {
+    getconnectivity();
+    super.initState();
+  }
+
+  getconnectivity() => subscription = Connectivity()
+          .onConnectivityChanged
+          .listen((List<ConnectivityResult> result) async {
+        isDeviceConnected = await InternetConnectionChecker().hasConnection;
+        if (!isDeviceConnected && isalertset == false) {
+          showDialogBox();
+          setState(() {
+            isalertset = true;
+          });
+        }
+      });
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   void whatsapplaunch({@required number}) async {
     String url = "whatsapp://send?phone=$number";
     await launchUrl(Uri.parse(url)).onError(
@@ -227,7 +261,7 @@ class drawerState extends State<drawer> {
           children: [
             Container(
               key: key1,
-              height: _mediaQuery.size.height * 0.9,
+              height: _mediaQuery.size.height * 0.8,
               //width: double.infinity,
               color: Colors.white,
               child: Stack(
@@ -239,7 +273,7 @@ class drawerState extends State<drawer> {
                       //
                       // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
                       SizedBox(
-                        height: 50,
+                        height: 90,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -270,7 +304,7 @@ class drawerState extends State<drawer> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 36,
+                              fontSize: 45,
                               fontFamily: 'ro'),
                         ),
                       ),
@@ -287,12 +321,12 @@ class drawerState extends State<drawer> {
                                 WavyAnimatedText(
                                   "Flutter Developer",
                                   textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 20),
+                                      color: Colors.black, fontSize: 25),
                                 ),
                                 WavyAnimatedText(
                                   "UI/UX Graphic Designer",
                                   textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 20),
+                                      color: Colors.black, fontSize: 25),
                                 )
                               ],
                               repeatForever: true,
@@ -309,7 +343,8 @@ class drawerState extends State<drawer> {
                       SizedBox(
                         height: 40,
                       ),
-                      CircleAvatar(
+
+                      /* CircleAvatar(
                         backgroundColor: Colors.blue,
                         radius: 105,
                         child: ClipOval(
@@ -321,9 +356,36 @@ class drawerState extends State<drawer> {
                             alignment: Alignment.topCenter,
                           ),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
+                  Positioned(
+                    bottom: 0.0,
+                    right: -65,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              child: ShadowOverlay(
+                                shadowWidth: 400,
+                                shadowHeight: 150,
+                                child: Image.asset(
+                                  alignment: Alignment.bottomRight,
+                                  height: 380,
+                                  width: 400,
+                                  'image/scool.png',
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -337,7 +399,7 @@ class drawerState extends State<drawer> {
                   children: [
                     Container(
                       // padding: EdgeInsets.symmetric(horizontal: 20),
-                      height: _mediaQuery.size.height * 0.9,
+                      height: _mediaQuery.size.height * 0.8,
                       child: ListTile(
                         title: Padding(
                           padding: const EdgeInsets.only(bottom: 20),
@@ -800,6 +862,7 @@ class drawerState extends State<drawer> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
             title: Text("Hire Me!"),
             actions: [
               Container(
@@ -850,4 +913,30 @@ class drawerState extends State<drawer> {
           );
         });
   }
+
+  showDialogBox() => showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+            title: Text("No Connection"),
+            content: Text("Plz check your internet connectivity"),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    setState(() {
+                      isalertset = false;
+                    });
+
+                    isDeviceConnected =
+                        await InternetConnectionChecker().hasConnection;
+                    if (!isDeviceConnected) {
+                      showDialogBox();
+                      setState(() {
+                        isalertset = true;
+                      });
+                    }
+                  },
+                  child: Text('ok'))
+            ],
+          ));
 }
