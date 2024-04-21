@@ -17,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shadow_overlay/shadow_overlay.dart';
+import 'package:manpreet_portfolio/wifi.dart';
 
 class drawer extends StatefulWidget {
   @override
@@ -261,90 +262,88 @@ class drawerState extends State<drawer> {
           children: [
             Container(
               key: key1,
-              height: _mediaQuery.size.height * 0.8,
-              //width: double.infinity,
+              //height: _mediaQuery.size.height,
+              //   width: double.infinity,
               color: Colors.white,
-              child: Stack(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      //
-                      // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
-                      SizedBox(
-                        height: 90,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Hi Welcome To My Portfolio",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'simp',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              height: 35,
-                              child: Image(image: AssetImage('image/hi.gif')),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Manpreet\nSingh",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //
+                  // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
+                  SizedBox(
+                    height: 90,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi Welcome To My Portfolio",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 45,
-                              fontFamily: 'ro'),
+                              fontFamily: 'simp',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            AnimatedTextKit(
-                              animatedTexts: [
-                                WavyAnimatedText(
-                                  "Flutter Developer",
-                                  textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 25),
-                                ),
-                                WavyAnimatedText(
-                                  "UI/UX Graphic Designer",
-                                  textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 25),
-                                )
-                              ],
-                              repeatForever: true,
-                              isRepeatingAnimation: true,
-                            ),
-                            Icon(
-                              Icons.play_arrow,
-                              color: Colors.green,
-                            ),
-                            SizedBox(height: 20),
-                          ],
+                        Container(
+                          height: 35,
+                          child: Image(image: AssetImage('image/hi.gif')),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
+                      ],
+                    ),
+                  ),
 
-                      /* CircleAvatar(
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Manpreet\nSingh",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 45,
+                          fontFamily: 'ro'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        AnimatedTextKit(
+                          animatedTexts: [
+                            WavyAnimatedText(
+                              "Flutter Developer",
+                              textStyle:
+                                  TextStyle(color: Colors.black, fontSize: 25),
+                            ),
+                            WavyAnimatedText(
+                              "UI/UX Graphic Designer",
+                              textStyle:
+                                  TextStyle(color: Colors.black, fontSize: 25),
+                            )
+                          ],
+                          repeatForever: true,
+                          isRepeatingAnimation: true,
+                        ),
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.green,
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+
+                  /* CircleAvatar(
                         backgroundColor: Colors.blue,
                         radius: 105,
                         child: ClipOval(
@@ -357,11 +356,9 @@ class drawerState extends State<drawer> {
                           ),
                         ),
                       ),*/
-                    ],
-                  ),
                   Positioned(
                     bottom: 0.0,
-                    right: -65,
+                    right: -60,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -369,6 +366,7 @@ class drawerState extends State<drawer> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
+                              width: _mediaQuery.size.width,
                               child: ShadowOverlay(
                                 shadowWidth: 400,
                                 shadowHeight: 150,
@@ -391,147 +389,152 @@ class drawerState extends State<drawer> {
             ),
             Container(
                 key: key2,
-                padding: EdgeInsets.symmetric(vertical: 30),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsets.symmetric(vertical: 50),
+                width: double.infinity,
+                //  height: _mediaQuery.size.height,
                 color: Colors.white,
                 child: Column(
                   children: [
                     Container(
-                      // padding: EdgeInsets.symmetric(horizontal: 20),
-                      height: _mediaQuery.size.height * 0.8,
-                      child: ListTile(
-                        title: Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            "About Me",
-                            style: TextStyle(
-                                fontSize: 45,
-                                color: Colors.blue,
-                                fontFamily: 'robo'),
-                            textAlign: TextAlign.center,
-                          ),
+                        // padding: EdgeInsets.symmetric(horizontal: 20),
+
+                        child: ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          "About Me",
+                          style: TextStyle(
+                              fontSize: 45,
+                              color: Colors.blue,
+                              fontFamily: 'robo'),
+                          textAlign: TextAlign.center,
                         ),
-                        subtitle: Column(
-                          children: [
-                            Text(
-                              'I am Manpreet Singh, a Flutter developer,Graphic Designer',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  fontFamily: 'simp'),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            AutoSizeText(
-                              "One of my key strengths lies in his ability to understand and implement complex design patterns and architectures. He possesses a deep understanding of Flutter's widget-based system, enabling him to create visually appealing and functional user interfaces. My attention to detail ensures that his applications not only meet technical requirements but also provide an excellent user experience.In addition to his technical prowess, i am well-versed in the Dart programming language, which is integral to Flutter development. His proficiency in Dart, coupled with a knack for problem-solving, allows him to tackle challenges efficiently and deliver high-quality code. My commitment to staying updated with the latest trends and advancements in Flutter and mobile development showcases his dedication to professional growth. He actively participates in the Flutter community, contributing insights and solutions to common development issues, further establishing himself as a reliable source of knowledge.",
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black,
-                                  fontFamily: 'simp'),
-                              textAlign: TextAlign.justify,
-                            ),
-                            Divider(
-                              height: 40,
-                              color: Colors.black,
-                            ),
-                            Text(
-                              'Tecnologies I have worked with:',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontFamily: 'simp',
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Flutter',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Icon(
-                                  Icons.play_arrow,
-                                  color: Colors.blue,
-                                ),
-                                Text(
-                                  'Dart',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Icon(
-                                  Icons.play_arrow,
-                                  color: Colors.blue,
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              height: 40,
-                              color: Colors.black,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Name:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                Text(
-                                  '   Manpreet Singh',
-                                  style: TextStyle(
-                                      fontFamily: 'robo', fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Email:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                Text(
-                                  '   manpreet420007@gmail.com',
-                                  style: TextStyle(
-                                      fontFamily: 'robo', fontSize: 12),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 40,
-                            ),
-                            Container(
-                              height: 45,
-                              width: 110,
-                              child: OutlinedButton(
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStatePropertyAll(
-                                  Colors.white,
-                                )),
-                                onPressed: null,
-                                child: Text(
-                                  'Resume',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ],
+                      ),
+                      subtitle: Column(
+                        children: [
+                          Text(
+                            'I am Manpreet Singh, a Flutter developer,Graphic Designer',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                fontFamily: 'simp'),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          AutoSizeText(
+                            "One of my key strengths lies in his ability to understand and implement complex design patterns and architectures. He possesses a deep understanding of Flutter's widget-based system, enabling him to create visually appealing and functional user interfaces. My attention to detail ensures that his applications not only meet technical requirements but also provide an excellent user experience.In addition to his technical prowess, i am well-versed in the Dart programming language, which is integral to Flutter development. His proficiency in Dart, coupled with a knack for problem-solving, allows him to tackle challenges efficiently and deliver high-quality code. My commitment to staying updated with the latest trends and advancements in Flutter and mobile development showcases his dedication to professional growth. He actively participates in the Flutter community, contributing insights and solutions to common development issues, further establishing himself as a reliable source of knowledge.",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.black,
+                                fontFamily: 'simp'),
+                            textAlign: TextAlign.justify,
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                        ],
+                      ),
+                    )),
+                    Divider(
+                      height: 40,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      'Tecnologies I have worked with:',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontFamily: 'simp',
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Flutter',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.blue,
+                        ),
+                        Text(
+                          'Dart',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.blue,
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 40,
+                      color: Colors.black,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Name:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          '   Manpreet Singh',
+                          style: TextStyle(fontFamily: 'robo', fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Email:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          '   manpreet420007@gmail.com',
+                          style: TextStyle(fontFamily: 'robo', fontSize: 12),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 110,
+                      child: OutlinedButton(
+                        style: ButtonStyle(
+                          side: MaterialStatePropertyAll(
+                              BorderSide(color: Colors.blue)),
+                          backgroundColor: MaterialStatePropertyAll(
+                            Colors.white,
+                          ),
+                          overlayColor: MaterialStatePropertyAll(
+                              Colors.blue.withOpacity(0.10)),
+                        ),
+                        onPressed: () {
+                          EasyLauncher.url(
+                              url:
+                                  "https://drive.google.com/file/d/1rOREg435oQQYclTVGB7H6Tw0LLlekCGq/view?usp=drive_link");
+                        },
+                        child: Text(
+                          'Resume',
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -540,7 +543,7 @@ class drawerState extends State<drawer> {
             Container(
               key: key3,
               width: _mediaQuery.size.width,
-              height: _mediaQuery.size.height * 0.6,
+              // height: _mediaQuery.size.height,
               color: Colors.white,
               child: Column(
                 children: [
@@ -568,7 +571,7 @@ class drawerState extends State<drawer> {
             Container(
               key: key5,
               width: _mediaQuery.size.width,
-              height: _mediaQuery.size.height * 0.6,
+              // height: _mediaQuery.size.height,
               color: Colors.white,
               child: Column(children: [
                 Text(
@@ -615,7 +618,7 @@ class drawerState extends State<drawer> {
               key: key4,
               color: Colors.white,
               width: _mediaQuery.size.width,
-              height: _mediaQuery.size.height * 0.7,
+              //height: _mediaQuery.size.height,
               child: Column(children: [
                 Text(
                   'Get in Touch',
