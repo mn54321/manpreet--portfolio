@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:manpreet_portfolio/carsousel_model.dart';
 import 'package:manpreet_portfolio/work.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:manpreet_portfolio/home.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
@@ -17,7 +17,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shadow_overlay/shadow_overlay.dart';
-import 'package:manpreet_portfolio/wifi.dart';
 
 class drawer extends StatefulWidget {
   @override
@@ -88,7 +87,9 @@ class drawerState extends State<drawer> {
         iconTheme: IconThemeData(color: Color.fromARGB(255, 5, 77, 136)),
       ),
       drawer: Drawer(
-          backgroundColor: Color.fromARGB(255, 5, 77, 136),
+        backgroundColor: Color.fromARGB(255, 5, 77, 136),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
               Container(
@@ -256,7 +257,24 @@ class drawerState extends State<drawer> {
                 },
               ),
             ],
-          )),
+          ),
+        ),
+      ),
+      floatingActionButton: Container(
+        height: 30,
+        width: 30,
+        child: FloatingActionButton(
+          backgroundColor: Colors.blue.withOpacity(0.5),
+          onPressed: () {
+            Scrollable.ensureVisible(key1.currentContext!,
+                duration: Duration(milliseconds: 1000));
+          },
+          child: Icon(
+            Icons.arrow_circle_up,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -272,7 +290,7 @@ class drawerState extends State<drawer> {
                   //
                   // Padding(padding: EdgeInsets.symmetric(horizontal: 3)),
                   SizedBox(
-                    height: 90,
+                    height: 70,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -356,32 +374,20 @@ class drawerState extends State<drawer> {
                           ),
                         ),
                       ),*/
-                  Positioned(
-                    bottom: 0.0,
-                    right: -60,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: _mediaQuery.size.width,
-                              child: ShadowOverlay(
-                                shadowWidth: 400,
-                                shadowHeight: 150,
-                                child: Image.asset(
-                                  alignment: Alignment.bottomRight,
-                                  height: 380,
-                                  width: 400,
-                                  'image/scool.png',
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                          ],
+                  Container(
+                    width: _mediaQuery.size.width,
+                    child: Align(
+                      child: ShadowOverlay(
+                        shadowColor: Colors.white,
+                        shadowWidth: 400,
+                        shadowHeight: 200,
+                        child: Image.asset(
+                          height: 400,
+                          width: 400,
+                          'image/new.png',
+                          fit: BoxFit.fill,
                         ),
-                      ],
+                      ),
                     ),
                   )
                 ],
@@ -395,6 +401,7 @@ class drawerState extends State<drawer> {
                 color: Colors.white,
                 child: Column(
                   children: [
+                    SizedBox(height: 50),
                     Container(
                         // padding: EdgeInsets.symmetric(horizontal: 20),
 
@@ -431,7 +438,7 @@ class drawerState extends State<drawer> {
                             textAlign: TextAlign.justify,
                           ),
                           SizedBox(
-                            height: 40,
+                            height: 20,
                           ),
                         ],
                       ),
@@ -538,6 +545,28 @@ class drawerState extends State<drawer> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 50),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                            height: 40,
+                            width: 70,
+                            child: Image.asset('image/google.png'),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                            height: 40,
+                            width: 70,
+                            child: Image.asset('image/flutter.png'),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 )),
             Container(
@@ -547,6 +576,7 @@ class drawerState extends State<drawer> {
               color: Colors.white,
               child: Column(
                 children: [
+                  SizedBox(height: 50),
                   Text(
                     'What I can do',
                     style: TextStyle(
@@ -574,6 +604,7 @@ class drawerState extends State<drawer> {
               // height: _mediaQuery.size.height,
               color: Colors.white,
               child: Column(children: [
+                SizedBox(height: 50),
                 Text(
                   "Portfolio",
                   style: TextStyle(
@@ -620,6 +651,7 @@ class drawerState extends State<drawer> {
               width: _mediaQuery.size.width,
               //height: _mediaQuery.size.height,
               child: Column(children: [
+                SizedBox(height: 60),
                 Text(
                   'Get in Touch',
                   style: TextStyle(
@@ -719,11 +751,12 @@ class drawerState extends State<drawer> {
                         enlargeCenterPage: true,
                         autoPlayInterval: Duration(seconds: 3),
                         autoPlayCurve: Curves.linear)),
-                SizedBox(height: 100),
+                SizedBox(height: 80),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: 80),
                     Text(
                       "Flutter Developed with love",
                       style: TextStyle(
@@ -804,7 +837,7 @@ class drawerState extends State<drawer> {
                       BoxShadow(
                           color: Colors.blue, blurRadius: 5, spreadRadius: 2)
                     ],
-                    color: const Color.fromARGB(255, 252, 251, 251),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(30)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

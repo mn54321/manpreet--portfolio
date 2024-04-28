@@ -93,6 +93,9 @@ flutter:
      - image/wifi.png
      - image/scool.png
      - image/book.png
+     - image/new.png
+     - image/flutter.png
+     - image/google.png
 
   #   - images/a_dot_ham.jpeg
 
